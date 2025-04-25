@@ -12,19 +12,19 @@ const protect = require("../middlewares/auth");
 
 const router = express.Router();
 
-// POST a new comment or reply
+// new comment or reply
 router.post("/", protect, createComment);
 
-// GET all comments for a post (optionally paginated and nested)
+// fetching all comments for a post
 router.get("/", getCommentsByPostId);
 
-// GET all comments by logged-in user
+// fetching all comments by logged-in user
 router.get("/my-comments", protect, getMyComments);
 
-// GET a single comment by ID
+// fetching a single comment by ID
 router.get("/:id", getCommentById);
 
-// PUT update a comment
+// updating a comment
 router.put("/:id", protect, updateComment);
 
 // DELETE a comment (and its replies)

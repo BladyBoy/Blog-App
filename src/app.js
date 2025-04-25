@@ -13,8 +13,8 @@ const { errorResponse } = require("./middlewares/responseHandler");
 const app = express();
 
 // Middleware
-app.use(express.json()); // To parse JSON request bodies
-app.use(cors()); // To enable CORS (Cross-Origin Resource Sharing)
+app.use(express.json());
+app.use(cors()); 
 
 // Routes
 app.use("/api/users", userRoutes); // User-related routes
@@ -26,12 +26,11 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "🚀 Blog API is running!" });
 });
 
-// Catch-all route for undefined paths (404)
+// Catching all route for undefined paths
 app.use((req, res) => {
   return errorResponse(res, "Route not found", 404);
 });
 
-// Error handling middleware
 app.use(errorHandler); // Centralized error handler
 
 module.exports = app;
