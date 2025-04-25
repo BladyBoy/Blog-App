@@ -8,12 +8,12 @@ This project is a fully functional RESTful API built for a blog application, dev
 
 ## 📦 Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB (Mongoose)
-- JWT for Authentication
-- Jest + Supertest for Testing
-- Postman for API Documentation
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Mongoose)
+- **Authentication**: JWT (JSON Web Token), bcryptjs
+- **Testing**: Jest, Supertest
+- **API Documentation**: Postman
+- **SEO-Friendly URLs**: Slugify
 
 ## 📁 Project Structure
 
@@ -67,7 +67,7 @@ npm run dev
 Make sure to configure your `.env` with the necessary variables.
 
 
-## 🧪 API Endpoints
+##  API Endpoints
 📚 [View full API docs on Postman](https://documenter.getpostman.com/view/41859756/2sB2cbZdq2)
 
 ### Auth
@@ -90,6 +90,8 @@ Make sure to configure your `.env` with the necessary variables.
 -   `DELETE /posts/:slug` – Delete post (author only, protected)
     
 -   `PATCH /posts/:slug/like` – Toggle like/unlike post (protected)
+
+-   `GET /posts/search` - Search Functionality by "content" or "title"
     
 
 > Each blog post supports `tags`, `likes`, `slug`, and `author` references. Like/unlike action is reflected via `likedByUser` and `likeCount` fields in response.
@@ -114,27 +116,27 @@ Make sure to configure your `.env` with the necessary variables.
 
 While building this project, I went beyond the core requirements and added the following enhancements to showcase my problem-solving and backend development skills:
 
-- ✅ **Like/Unlike System** on posts and comments with:
+- **Like/Unlike System** on posts and comments with:
   - Users can **like** and **unlike** both posts and comments.
   - Preventing duplicate likes
   - Dynamic like count
   -  Each comment and post has a **like count**, and the response includes whether the user has liked the item (using `likedByUser` flag).
-- ✅ **Slug-Based Routing** for posts instead of MongoDB ObjectIds to improve SEO-friendly URLs and cleaner API consumption
+- **Slug-Based Routing** for posts instead of MongoDB ObjectIds to improve SEO-friendly URLs and cleaner API consumption
 - **Comment Management** for posts for better management that includes:
   - Users can **create**, **read**, **update**, and **delete** comments.
     
   -   **View all comments** for a specific post and view all comments by the logged-in user.
 
-- ✅ **Postman Collection** fully organized and documented with:
+- **Postman Collection** fully organized and documented with:
   - Separate folders for each route group
   - Request-level description and example inputs/outputs
   - Shared authorization setup
--  **Centralized Error Handling**:
+- **Centralized Error Handling**:
    -   All errors are handled in a single error-handling middleware, improving code readability and maintainability.
 
-- ✅ **Post Controller Refactoring** with modular functions, reusable error/response handlers, and protected routes for data safety
+-  **Post Controller Refactoring** with modular functions, reusable error/response handlers, and protected routes for data safety
 
-- ✅ **README.md** designed with clear structure, live documentation link, and deployment-ready instructions
+-  **README.md** designed with clear structure, live documentation link, and deployment-ready instructions
 
 These additions reflect my focus on real-world readiness, attention to user experience, and ability to build production-quality APIs.
 
@@ -166,7 +168,8 @@ After running the tests, the following coverage was achieved:
     File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s ---------------------|---------|----------|---------|---------|--------------------------------------------------
     All files            |    85.2 |    53.84 |   84.21 |   87.16 |                                                 
      src                 |   88.23 |      100 |       0 |   88.23 | 24,29                                           
-     src/controllers     |   80.99 |    60.86 |     100 |   83.18 |                                                 
+     src/controllers     |   80.99 |    60.86 |     100 |   83.18 |     
+    commentController.js |      70 |     82.3 |   76.15 |   80.65 | 19,25,38-39,49,99-100
       postController.js  |   78.65 |    55.26 |     100 |   81.48 | 12,15,18,27,42-43,56-57,74,86,97,111,123,128,161
       userController.js  |    87.5 |     87.5 |     100 |    87.5 | 34,66,77,83                                     
      src/middlewares     |    87.5 |    35.29 |      75 |    87.5 |                                                 
@@ -181,10 +184,11 @@ After running the tests, the following coverage was achieved:
       userRoutes.js      |     100 |      100 |     100 |     100 |                                                 
     ---------------------|---------|----------|---------|---------|--------------------------------------------------
 
-Test Suites: 3 passed, 3 total
-Tests:       18 passed, 18 total
+Test Suites: 4 passed, 4 total
+Tests:       23 passed, 23 total
 Snapshots:   0 total
-Time:        8.377 s` 
+Time:        11.091 s
+Ran all test suites.` 
 
 ### Coverage Summary
    
